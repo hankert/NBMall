@@ -2,6 +2,7 @@ package cn.hanker.latte.app.net;
 
 import android.content.Context;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -30,6 +31,10 @@ public class RestClientBuilder {
     private  RequestBody mBody = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
+    private File mFile = null;
+    private String mDownloadDir = null;
+    private String mExtension = null;
+    private String mName = null;
 
     RestClientBuilder(){
 
@@ -72,6 +77,29 @@ public class RestClientBuilder {
         this.mIFailure = failure;
         return this;
     }
+    public final RestClientBuilder file(File file){
+        this.mFile = file;
+        return this;
+    }
+    public final RestClientBuilder file(String filePath){
+        this.mFile = new File(filePath);
+        return this;
+    }
+
+    public final RestClientBuilder name(String name) {
+        this.mName = name;
+        return this;
+    }
+
+    public final RestClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
+    public final RestClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
     public final RestClientBuilder loader(Context context, LoaderStyle style){
         this.mContext = context;
         this.mLoaderStyle = style;
@@ -83,9 +111,8 @@ public class RestClientBuilder {
         return this;
     }
 
-
     public final RestClient build(){
-        return  new RestClient(mUrl, PARAMS, mIRequest, mIFailure, mISuccess, mIError, mBody, mLoaderStyle, mContext);
+        return  new RestClient(mUrl, PARAMS, mIRequest, mIFailure, mISuccess, mIError, mBody, mLoaderStyle, mContext, mFile, mDownloadDir, mExtension, mName);
     }
 
 }
