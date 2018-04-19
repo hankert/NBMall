@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="cn.hanker.latte"/>
+          package="cn.hanker.latte">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
+</manifest>
