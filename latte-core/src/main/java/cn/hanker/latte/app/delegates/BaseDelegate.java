@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.hanker.latte.app.activities.ProxyActivity;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
@@ -29,25 +30,30 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = null;
-        if (setLayout() instanceof Integer){
+        final View rootView;
+        if (setLayout() instanceof Integer) {
             rootView = inflater.inflate((Integer) setLayout(), container, false);
 
-        }else if (setLayout() instanceof View){
+        } else if (setLayout() instanceof View) {
             rootView = (View) setLayout();
-        }
-        if (rootView != null){
-            mUnbinder = ButterKnife.bind(this, rootView);
-            onBindView(savedInstanceState, rootView);
+        } else {
+            throw new ClassCastException("setLayout() must be int or View");
         }
 
+        mUnbinder = ButterKnife.bind(this, rootView);
+        onBindView(savedInstanceState, rootView);
+
         return rootView;
+    }
+
+    public final ProxyActivity getProxyActivity(){
+        return (ProxyActivity) _mActivity;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mUnbinder != null){
+        if (mUnbinder != null) {
             mUnbinder.unbind();
         }
     }

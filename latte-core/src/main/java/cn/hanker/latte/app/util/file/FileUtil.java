@@ -1,4 +1,4 @@
-package cn.hanker.latte.app.util;
+package cn.hanker.latte.app.util.file;
 
 import android.content.ContentResolver;
 import android.content.Context;

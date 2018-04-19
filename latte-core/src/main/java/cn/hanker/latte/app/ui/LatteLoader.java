@@ -11,7 +11,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.ArrayList;
 
 import cn.hanker.latte.R;
-import cn.hanker.latte.app.util.DimenUtil;
+import cn.hanker.latte.app.util.dimen.DimenUtil;
 
 /**
  * @auther jh

@@ -10,7 +10,7 @@ import java.io.InputStream;
 import cn.hanker.latte.app.Latte;
 import cn.hanker.latte.app.net.callback.IRequest;
 import cn.hanker.latte.app.net.callback.ISuccess;
-import cn.hanker.latte.app.util.FileUtil;
+import cn.hanker.latte.app.util.file.FileUtil;
 import okhttp3.ResponseBody;
 
 /**

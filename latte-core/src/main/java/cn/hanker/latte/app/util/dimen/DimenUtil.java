@@ -1,4 +1,4 @@
-package cn.hanker.latte.app.util;
+package cn.hanker.latte.app.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
