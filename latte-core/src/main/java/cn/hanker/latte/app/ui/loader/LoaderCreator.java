@@ -1,4 +1,4 @@
-package cn.hanker.latte.app.ui;
+package cn.hanker.latte.app.ui.loader;
 
 import android.content.Context;
 

@@ -10,7 +10,7 @@ import cn.hanker.latte.app.net.callback.IError;
 import cn.hanker.latte.app.net.callback.IFailure;
 import cn.hanker.latte.app.net.callback.IRequest;
 import cn.hanker.latte.app.net.callback.ISuccess;
-import cn.hanker.latte.app.ui.LoaderStyle;
+import cn.hanker.latte.app.ui.loader.LoaderStyle;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 

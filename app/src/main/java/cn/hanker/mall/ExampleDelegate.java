@@ -15,6 +15,7 @@ import cn.hanker.latte.app.net.callback.IError;
 import cn.hanker.latte.app.net.callback.IFailure;
 import cn.hanker.latte.app.net.callback.ISuccess;
 import cn.hanker.latte.app.net.rx.RxRestClient;
+import cn.hanker.latte.app.util.log.LatteLogger;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -38,9 +39,9 @@ public class ExampleDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
-//        test();
+        test();
 //        testRx();
-        onCallRxRestClient();
+//        onCallRxRestClient();
 
 
     }
@@ -53,6 +54,8 @@ public class ExampleDelegate extends LatteDelegate {
                     @Override
                     public void onSuccess(String response) {
                         Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                        LatteLogger.d("logger执行了", response);
+//                        Log.d("原声logger执行了", response);
                     }
                 })
                 .failure(new IFailure() {
@@ -129,6 +132,8 @@ public class ExampleDelegate extends LatteDelegate {
 //                            }
 //                        }, 2000);
                         Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+//                        LatteLogger.d("NBmall", s);
+
                     }
 
                     @Override

@@ -3,6 +3,8 @@ package cn.hanker.mall;
 import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import cn.hanker.R;
 import cn.hanker.latte.app.Latte;
@@ -20,6 +22,8 @@ public class ExampleApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Logger.addLogAdapter(new AndroidLogAdapter());
 
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())

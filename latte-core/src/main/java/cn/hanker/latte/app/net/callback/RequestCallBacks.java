@@ -3,8 +3,8 @@ package cn.hanker.latte.app.net.callback;
 
 import android.os.Handler;
 
-import cn.hanker.latte.app.ui.LatteLoader;
-import cn.hanker.latte.app.ui.LoaderStyle;
+import cn.hanker.latte.app.ui.loader.LatteLoader;
+import cn.hanker.latte.app.ui.loader.LoaderStyle;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

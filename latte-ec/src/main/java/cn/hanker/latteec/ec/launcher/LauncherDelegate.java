@@ -11,6 +11,8 @@ import java.util.Timer;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.hanker.latte.app.delegates.LatteDelegate;
+import cn.hanker.latte.app.ui.launcher.ScrollLauncherTag;
+import cn.hanker.latte.app.util.storage.LattePreference;
 import cn.hanker.latte.app.util.timer.BaseTimerTask;
 import cn.hanker.latte.app.util.timer.ITimerListener;
 import cn.hanker.latteec.R;
@@ -32,9 +34,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
     @BindView(R2.id.tv_launcher_timer)
     AppCompatTextView mTvLauncherTimer = null;
 
+    // 点击跳过按钮
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView(){
+        if (mTimer != null){
+            checkIsShowScroll();
+            mTimer.cancel();
+            mTimer = null;
 
+        }
 
     }
 
@@ -56,6 +64,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
 
     }
 
+    //判断是否启动滑动启动页
+    private void checkIsShowScroll(){
+        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+            start(new LauncherScrollDelegate(), SINGLETASK);
+        }else{
+            // 检查用户是否登录了app
+
+        }
+    }
 
     @Override
     public void onTimer() {
@@ -67,8 +84,10 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
                     mCount--;
                     if (mCount < 0){
                         if (mTimer != null){
+                            checkIsShowScroll();
                             mTimer.cancel();
                             mTimer = null;
+
                         }
                     }
                 }

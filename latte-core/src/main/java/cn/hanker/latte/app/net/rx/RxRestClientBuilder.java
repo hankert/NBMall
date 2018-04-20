@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 import cn.hanker.latte.app.net.RestCreator;
-import cn.hanker.latte.app.ui.LoaderStyle;
+import cn.hanker.latte.app.ui.loader.LoaderStyle;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
