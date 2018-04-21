@@ -1,5 +1,6 @@
 package cn.hanker.latteec.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
@@ -10,7 +11,11 @@ import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.hanker.latte.app.AccountManager;
+import cn.hanker.latte.app.IUserChecker;
 import cn.hanker.latte.app.delegates.LatteDelegate;
+import cn.hanker.latte.app.ui.launcher.ILauncherListener;
+import cn.hanker.latte.app.ui.launcher.OnLauncherFinishTag;
 import cn.hanker.latte.app.ui.launcher.ScrollLauncherTag;
 import cn.hanker.latte.app.util.storage.LattePreference;
 import cn.hanker.latte.app.util.timer.BaseTimerTask;
@@ -43,7 +48,16 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
             mTimer = null;
 
         }
+    }
 
+    private ILauncherListener mILauncherListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener){
+            mILauncherListener = (ILauncherListener) activity;
+        }
     }
 
     private void initTimer(){
@@ -70,7 +84,21 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
             start(new LauncherScrollDelegate(), SINGLETASK);
         }else{
             // 检查用户是否登录了app
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null){
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
 
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null){
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 

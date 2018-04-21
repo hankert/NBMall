@@ -1,16 +1,18 @@
 package cn.hanker.latteec.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.hanker.latte.app.delegates.LatteDelegate;
+import cn.hanker.latte.app.net.RestClient;
+import cn.hanker.latte.app.net.callback.ISuccess;
 import cn.hanker.latteec.R;
 import cn.hanker.latteec.R2;
 
@@ -35,21 +37,35 @@ public class SignUpDelegate extends LatteDelegate{
     @BindView(R2.id.btn_sign_up)
     AppCompatButton mSignUp;
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener){
+            mISignListener = (ISignListener) activity;
+        }
+    }
+
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp(){
         if (checkForm()){
-//            RestClient.builder()
-//                    .url("sign_up")
-//                    .params("", "")
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//
-//                        }
-//                    })
-//                    .build()
-//                    .post();
-            Toast.makeText(getContext(), "验证成功", Toast.LENGTH_SHORT).show();
+            // 有接口开放
+            RestClient.builder()
+                    .url("sign_up.php")
+//                    .params("name", mName.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+
+                            SignHandler.onSignUp(response, mISignListener);
+//                            Toast.makeText(getContext(), "注册成功", Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    .build()
+                    .get();
+//            Toast.makeText(getContext(), "验证成功", Toast.LENGTH_SHORT).show();
         }
     }
 

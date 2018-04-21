@@ -4,7 +4,7 @@ import com.orhanobut.logger.Logger;
 
 /**
  * @auther jh
- * @des ${TODO}
+ * @des 日志开关
  * Created by J.H on 2018/4/20.
  */
 public final class LatteLogger {

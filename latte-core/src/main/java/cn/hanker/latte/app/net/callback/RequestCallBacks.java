@@ -5,6 +5,7 @@ import android.os.Handler;
 
 import cn.hanker.latte.app.ui.loader.LatteLoader;
 import cn.hanker.latte.app.ui.loader.LoaderStyle;
+import cn.hanker.latte.app.util.log.LatteLogger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,16 +40,16 @@ public class RequestCallBacks implements Callback<String>{
             if (call.isExecuted()){
                 if (SUCCESS != null){
                     SUCCESS.onSuccess(response.body());
+                    LatteLogger.d("Response_success", response.body());
                 }
             }
         }else{
             if (ERROR != null){
                 ERROR.onError(response.code(), response.message());
+                LatteLogger.d("Response_error", "错误码_"+response.code()+"错误信息_"+response.message());
             }
         }
         stopLoading();
-
-
     }
 
     private void stopLoading() {
@@ -66,6 +67,7 @@ public class RequestCallBacks implements Callback<String>{
     public void onFailure(Call<String> call, Throwable t) {
             if (FAILURE != null){
                 FAILURE.onFailure();
+                LatteLogger.d("Response_failure", "请求失败");
             }
             if (REQUEST != null){
                 REQUEST.onRequestEnd();

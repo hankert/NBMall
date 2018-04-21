@@ -1,5 +1,7 @@
 package cn.hanker.latte.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -72,6 +74,20 @@ public class Configurator {
         ICONS.add(descriptor);
         return this;
     }
+    public final Configurator withWechatAppId(String wechatAppId){
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, wechatAppId);
+        return this;
+    }
+    public final Configurator withWechatAppSecret(String wechatAppSecret){
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_SECRET, wechatAppSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity){
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        return this;
+    }
+
 
     public final Configurator withInterceptor(Interceptor interceptor){
         INTERCEPTORS.add(interceptor);

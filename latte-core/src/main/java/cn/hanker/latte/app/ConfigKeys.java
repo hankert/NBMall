@@ -12,6 +12,9 @@ public enum ConfigKeys {
     APPLICATION_CONTEXT,
     CONFIG_READY,
     ICON,
-    INTERCEPTORS
+    INTERCEPTORS,
+    WE_CHAT_APP_ID,
+    WE_CHAT_SECRET,
+    ACTIVITY
 
 }

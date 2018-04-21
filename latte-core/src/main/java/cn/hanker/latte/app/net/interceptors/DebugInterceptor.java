@@ -5,6 +5,7 @@ import android.support.annotation.RawRes;
 import java.io.IOException;
 
 import cn.hanker.latte.app.util.file.FileUtil;
+import cn.hanker.latte.app.util.log.LatteLogger;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Response;
@@ -48,6 +49,7 @@ public class DebugInterceptor extends BaseInterceptor {
         if (url.contains(DEBUG_RUL)){
             return debugResponse(chain, DEBUG_RAW_ID);
         }
+        LatteLogger.d("Request_url",  url);
         return chain.proceed(chain.request());
     }
 

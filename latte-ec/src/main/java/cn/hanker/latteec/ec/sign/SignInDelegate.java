@@ -1,15 +1,22 @@
 package cn.hanker.latteec.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.hanker.latte.app.delegates.LatteDelegate;
+import cn.hanker.latte.app.net.RestClient;
+import cn.hanker.latte.app.net.callback.ISuccess;
+import cn.hanker.latte.app.util.log.LatteLogger;
+import cn.hanker.latte.app.wechat.LatteWeChat;
+import cn.hanker.latte.app.wechat.callbacks.IWeChatSignInCallBack;
 import cn.hanker.latteec.R;
 import cn.hanker.latteec.R2;
 
@@ -29,14 +36,43 @@ public class SignInDelegate extends LatteDelegate {
     @BindView(R2.id.edit_signin_pwd)
     TextInputEditText mPwd = null;
 
+    private ISignListener mISignListener = null;
+
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn(){
-        checkForm();
+        if (checkForm()) {
+            RestClient.builder()
+                    .url("sign_up.php")
+//                    .params("email", mEmail.getText().toString())
+//                    .params("password", mPwd.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .build()
+                    .post();
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
     }
 
     @OnClick(R2.id.icon_sign_in_wechat)
     void onClickWeChat(){
-
+        LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallBack() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+                Toast.makeText(getContext(), userInfo, Toast.LENGTH_LONG).show();
+                LatteLogger.d("wechatInfo", userInfo);
+            }
+        }).signIn();
     }
 
     @OnClick(R2.id.tv_link_sign_up)

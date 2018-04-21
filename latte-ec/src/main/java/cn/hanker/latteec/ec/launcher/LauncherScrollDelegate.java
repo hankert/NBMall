@@ -1,5 +1,6 @@
 package cn.hanker.latteec.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,8 +10,12 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 
+import cn.hanker.latte.app.AccountManager;
+import cn.hanker.latte.app.IUserChecker;
 import cn.hanker.latte.app.delegates.LatteDelegate;
+import cn.hanker.latte.app.ui.launcher.ILauncherListener;
 import cn.hanker.latte.app.ui.launcher.LauncherHolderCreator;
+import cn.hanker.latte.app.ui.launcher.OnLauncherFinishTag;
 import cn.hanker.latte.app.ui.launcher.ScrollLauncherTag;
 import cn.hanker.latte.app.util.storage.LattePreference;
 import cn.hanker.latteec.R;
@@ -25,6 +30,16 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
+
+    private ILauncherListener mILauncherListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener){
+            mILauncherListener = (ILauncherListener) activity;
+        }
+    }
 
     private void initBanner(){
 
@@ -58,6 +73,21 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         if (position == INTEGERS.size() -1){
             LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
             // 检查用户是否已经登录了
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null){
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null){
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 }

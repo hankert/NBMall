@@ -48,7 +48,8 @@ public class ExampleDelegate extends LatteDelegate {
 
     private void test() {
         RestClient.builder()
-                .url("https://127.0.0.1/index")
+//                .url("https://127.0.0.1/index")
+                .url("search.php")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -61,13 +62,13 @@ public class ExampleDelegate extends LatteDelegate {
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-
+//                        LatteLogger.d("onFailure", "失败");
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-
+//                        LatteLogger.d("onError", msg+code);
                     }
                 })
                 .build()
