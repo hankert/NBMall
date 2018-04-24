@@ -2,7 +2,7 @@ package cn.hanker.mall.generators;
 
 import com.hanker.annotations.AppRegisterGenerator;
 
-import cn.hanker.latte.app.wechat.templates.AppRegisterTemplate;
+import com.flowbank.wo.wechat.templates.AppRegisterTemplate;
 
 /**
  * @auther jh
@@ -11,7 +11,7 @@ import cn.hanker.latte.app.wechat.templates.AppRegisterTemplate;
  */
 @SuppressWarnings("unused")
 @AppRegisterGenerator(
-        packageName = "cn.hanker.mall",
+        packageName = "com.flowbank.wo",
         registerTemplate = AppRegisterTemplate.class
 )
 public interface AppRegister {

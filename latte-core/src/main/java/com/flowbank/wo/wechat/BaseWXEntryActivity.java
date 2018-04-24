@@ -1,4 +1,6 @@
-package cn.hanker.latte.app.wechat;
+package com.flowbank.wo.wechat;
+
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -17,7 +19,7 @@ import cn.hanker.latte.app.util.log.LatteLogger;
  * @des ${TODO}
  * Created by J.H on 2018/4/21.
  */
-public abstract class BaseWXEntryActivity extends BaseWXActivity{
+public abstract class BaseWXEntryActivity extends BaseWXActivity {
 
     // 用户登录成功后回调
     protected abstract void onSignInSuccess(String userInfo);
@@ -25,7 +27,7 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity{
     // 第三方应用发送到微信请求后的回调
     @Override
     public void onResp(BaseResp baseResp) {
-        final String code = ((SendAuth.Resp)baseResp).code;
+        final String code = ((SendAuth.Resp) baseResp).code;
         final StringBuilder authUrl = new StringBuilder();
         authUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token?appid=")
                 .append(LatteWeChat.APP_ID)
@@ -35,6 +37,7 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity{
                 .append(code)
                 .append("&grant_type=authorization_code");
         LatteLogger.d("authUrl", authUrl.toString());
+        Log.d("authUrl", authUrl.toString());
         getAuth(authUrl.toString());
     }
 
@@ -59,9 +62,21 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity{
                                 .append("&lang=")
                                 .append("zh_CN");
 
-                        LatteLogger.d("userInfoUrl", userInfoUrl.toString());
+                        LatteLogger.d("userInfoUrl", response);
                         getUserInfo(userInfoUrl.toString());
 
+                    }
+                }).
+                failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        LatteLogger.d("授权失败");
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        LatteLogger.d("授权错误", msg);
                     }
                 })
                 .build()
@@ -82,12 +97,21 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity{
                     @Override
                     public void onFailure() {
                         LatteLogger.d("获取微信登录失败");
+                        Log.d("flowbank", "获取微信登录失败");
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-                        LatteLogger.d("获取微信登录错误信息", "错误码_"+code+"_错误信息_"+msg);
+                        LatteLogger.d("获取微信登录错误信息", "错误码_" + code + "_错误信息_" + msg);
+                        Log.d("flowbank", "获取微信登录错误信息" + msg);
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        LatteLogger.d("获取微信登录失败");
+                        Log.d("flowbank", "获取微信登录失败");
                     }
                 })
                 .build()

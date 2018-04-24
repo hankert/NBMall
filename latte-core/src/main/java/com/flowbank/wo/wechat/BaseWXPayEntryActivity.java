@@ -1,4 +1,4 @@
-package cn.hanker.latte.app.wechat;
+package com.flowbank.wo.wechat;
 
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseResp;

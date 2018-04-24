@@ -9,14 +9,15 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.flowbank.wo.wechat.LatteWeChat;
+import com.flowbank.wo.wechat.callbacks.IWeChatSignInCallBack;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.hanker.latte.app.delegates.LatteDelegate;
 import cn.hanker.latte.app.net.RestClient;
 import cn.hanker.latte.app.net.callback.ISuccess;
 import cn.hanker.latte.app.util.log.LatteLogger;
-import cn.hanker.latte.app.wechat.LatteWeChat;
-import cn.hanker.latte.app.wechat.callbacks.IWeChatSignInCallBack;
 import cn.hanker.latteec.R;
 import cn.hanker.latteec.R2;
 

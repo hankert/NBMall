@@ -1,4 +1,4 @@
-package cn.hanker.latte.app.wechat.callbacks;
+package com.flowbank.wo.wechat.callbacks;
 
 /**
  * @auther jh

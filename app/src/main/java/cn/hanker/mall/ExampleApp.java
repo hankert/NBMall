@@ -4,8 +4,6 @@ import android.app.Application;
 
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 
 import cn.hanker.R;
 import cn.hanker.latte.app.Latte;
@@ -25,13 +23,11 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Logger.addLogAdapter(new AndroidLogAdapter());
-
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withApiHost("http://192.168.2.8/RestServer/api/")
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withWechatAppId("wx9b10f06dd604f9df")
                 .withWechatAppSecret("sinobyte888809876543211234567890")
 //                .withInterceptor()

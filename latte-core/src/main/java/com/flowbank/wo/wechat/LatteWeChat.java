@@ -1,14 +1,14 @@
-package cn.hanker.latte.app.wechat;
+package com.flowbank.wo.wechat;
 
 import android.app.Activity;
 
+import com.flowbank.wo.wechat.callbacks.IWeChatSignInCallBack;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import cn.hanker.latte.app.ConfigKeys;
 import cn.hanker.latte.app.Latte;
-import cn.hanker.latte.app.wechat.callbacks.IWeChatSignInCallBack;
 
 /**
  * @auther jh

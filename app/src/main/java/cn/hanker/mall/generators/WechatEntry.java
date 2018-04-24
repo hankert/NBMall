@@ -2,7 +2,7 @@ package cn.hanker.mall.generators;
 
 import com.hanker.annotations.EntryGenerator;
 
-import cn.hanker.latte.app.wechat.templates.WXEntryTemplate;
+import com.flowbank.wo.wechat.templates.WXEntryTemplate;
 
 /**
  * @auther jh
@@ -11,7 +11,7 @@ import cn.hanker.latte.app.wechat.templates.WXEntryTemplate;
  */
 @SuppressWarnings("unused")
 @EntryGenerator(
-        packageName = "cn.hanker.mall",
+        packageName = "com.flowbank.wo",
         entryTemplate = WXEntryTemplate.class
 )
 public interface WechatEntry {

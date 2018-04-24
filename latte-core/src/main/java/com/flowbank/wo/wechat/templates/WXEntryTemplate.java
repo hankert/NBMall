@@ -1,7 +1,7 @@
-package cn.hanker.latte.app.wechat.templates;
+package com.flowbank.wo.wechat.templates;
 
-import cn.hanker.latte.app.wechat.BaseWXEntryActivity;
-import cn.hanker.latte.app.wechat.LatteWeChat;
+import com.flowbank.wo.wechat.BaseWXEntryActivity;
+import com.flowbank.wo.wechat.LatteWeChat;
 
 /**
  * @auther jh

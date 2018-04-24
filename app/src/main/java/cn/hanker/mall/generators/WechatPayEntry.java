@@ -2,7 +2,7 @@ package cn.hanker.mall.generators;
 
 import com.hanker.annotations.PayEntryGenerator;
 
-import cn.hanker.latte.app.wechat.templates.WXPayEntryTemplate;
+import com.flowbank.wo.wechat.templates.WXPayEntryTemplate;
 
 /**
  * @auther jh
@@ -11,7 +11,7 @@ import cn.hanker.latte.app.wechat.templates.WXPayEntryTemplate;
  */
 @SuppressWarnings("unused")
 @PayEntryGenerator(
-        packageName = "cn.hanker.mall",
+        packageName = "com.flowbank.wo",
         payEntryTemplate = WXPayEntryTemplate.class
 )
 public interface WechatPayEntry {

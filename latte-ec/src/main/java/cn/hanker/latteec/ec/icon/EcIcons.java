@@ -21,11 +21,11 @@ public enum  EcIcons implements Icon{
 
     @Override
     public String key() {
-         return name().replace('_', '-');
+        return name().replace('_', '-');
     }
 
     @Override
     public char character() {
-         return character;
+        return character;
     }
 }

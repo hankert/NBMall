@@ -4,7 +4,8 @@ android {
     compileSdkVersion 26
     buildToolsVersion "27.0.3"
     defaultConfig {
-        applicationId "com.flowbank.wo"
+        applicationId "cn.haner"
+//        applicationId "com.flowbank.wo"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".mall.wxapi.WXEntryActivity"
+            android:name="com.flowbank.wo.wxapi.WXEntryActivity"
             android:exported="true"
             android:label="微信回调"
             android:launchMode="singleTop"
@@ -43,7 +43,7 @@
         </activity>
 
         <activity
-            android:name=".mall.wxapi.WXPayEntryActivity"
+            android:name="com.flowbank.wo.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:label="微信支付回调"
             android:launchMode="singleTop"

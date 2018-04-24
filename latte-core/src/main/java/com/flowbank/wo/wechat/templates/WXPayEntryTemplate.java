@@ -1,10 +1,10 @@
-package cn.hanker.latte.app.wechat.templates;
+package com.flowbank.wo.wechat.templates;
 
 import android.widget.Toast;
 
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 
-import cn.hanker.latte.app.wechat.BaseWXPayEntryActivity;
+import com.flowbank.wo.wechat.BaseWXPayEntryActivity;
 
 /**
  * @auther jh

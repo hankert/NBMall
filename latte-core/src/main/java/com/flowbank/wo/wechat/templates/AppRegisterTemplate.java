@@ -1,4 +1,4 @@
-package cn.hanker.latte.app.wechat.templates;
+package com.flowbank.wo.wechat.templates;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

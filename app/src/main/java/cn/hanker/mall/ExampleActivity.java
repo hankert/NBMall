@@ -10,8 +10,9 @@ import cn.hanker.latte.app.delegates.LatteDelegate;
 import cn.hanker.latte.app.ui.launcher.ILauncherListener;
 import cn.hanker.latte.app.ui.launcher.OnLauncherFinishTag;
 import cn.hanker.latteec.ec.launcher.LauncherDelegate;
+import cn.hanker.latteec.ec.main.EcBottomDelegate;
 import cn.hanker.latteec.ec.sign.ISignListener;
-import cn.hanker.latteec.ec.sign.SignInDelegate;
+import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
@@ -23,6 +24,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override
@@ -49,12 +51,14 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_SHORT).show();
                 // 跳转主页
-                startWithPop(new ExampleDelegate());
+//                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_SHORT).show();
                 // 启动并且将当前页面关闭
-                startWithPop(new SignInDelegate());
+//                startWithPop(new SignInDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             default:
                 break;
