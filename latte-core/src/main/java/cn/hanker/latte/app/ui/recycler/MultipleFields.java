@@ -5,7 +5,7 @@ package cn.hanker.latte.app.ui.recycler;
  * @des ${TODO}
  * Created by J.H on 2018/4/24.
  */
-public enum MultipleFidlds {
+public enum MultipleFields {
 
     ITEM_TYPE,
     TEXT,

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import cn.hanker.latte.app.ui.recycler.DataConverter;
 import cn.hanker.latte.app.ui.recycler.ItemType;
-import cn.hanker.latte.app.ui.recycler.MultipleFidlds;
+import cn.hanker.latte.app.ui.recycler.MultipleFields;
 import cn.hanker.latte.app.ui.recycler.MultipleItemEntity;
 
 /**
@@ -51,12 +51,12 @@ public final class IndexDataConvert extends DataConverter{
                 }
             }
             final MultipleItemEntity entity = MultipleItemEntity.builder()
-                    .setField(MultipleFidlds.ITEM_TYPE, type)
-                    .setField(MultipleFidlds.SPAN_SIZE, spanSize)
-                    .setField(MultipleFidlds.ID, id)
-                    .setField(MultipleFidlds.TEXT, text)
-                    .setField(MultipleFidlds.IMAGE_RUL, imageUrl)
-                    .setField(MultipleFidlds.BANNERS, bannerImages)
+                    .setField(MultipleFields.ITEM_TYPE, type)
+                    .setField(MultipleFields.SPAN_SIZE, spanSize)
+                    .setField(MultipleFields.ID, id)
+                    .setField(MultipleFields.TEXT, text)
+                    .setField(MultipleFields.IMAGE_RUL, imageUrl)
+                    .setField(MultipleFields.BANNERS, bannerImages)
                     .build();
                 ENTIVITES.add(entity);
 

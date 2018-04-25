@@ -17,7 +17,7 @@ public class MultipleEntityBuilder {
     }
 
     public final MultipleEntityBuilder setItemType(int itemType){
-        FIELDS.put(MultipleFidlds.ITEM_TYPE, itemType);
+        FIELDS.put(MultipleFields.ITEM_TYPE, itemType);
         return this;
     }
 
